@@ -2,26 +2,26 @@
 """Defines unittests for models/amenity.py.
 
 Unittest classes:
-    TestAmenityInstantiation
-    TestAmenitySave
-    TestAmenityToDict
+    TestAmenity_instantiation
+    TestAmenity_save
+    TestAmenity_to_dict
 """
 import os
+import models
 import unittest
 from datetime import datetime
 from time import sleep
 from models.amenity import Amenity
-from models import storage
 
 
-class TestAmenityInstantiation(unittest.TestCase):
+class TestAmenity_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Amenity class."""
 
     def test_no_args_instantiates(self):
         self.assertEqual(Amenity, type(Amenity()))
 
     def test_new_instance_stored_in_objects(self):
-        self.assertIn(Amenity(), storage.all().values())
+        self.assertIn(Amenity(), models.storage.all().values())
 
     def test_id_is_public_str(self):
         self.assertEqual(str, type(Amenity().id))
@@ -85,27 +85,24 @@ class TestAmenityInstantiation(unittest.TestCase):
             Amenity(id=None, created_at=None, updated_at=None)
 
 
-class TestAmenitySave(unittest.TestCase):
+class TestAmenity_save(unittest.TestCase):
     """Unittests for testing save method of the Amenity class."""
 
     @classmethod
-    def setUpClass(cls):
-        cls._file_path = "file.json"
-        cls._temp_file_path = "tmp_file.json"
+    def setUp(self):
         try:
-            os.rename(cls._file_path, cls._temp_file_path)
-        except FileNotFoundError:
+            os.rename("file.json", "tmp")
+        except IOError:
             pass
 
-    @classmethod
-    def tearDownClass(cls):
+    def tearDown(self):
         try:
-            os.remove(cls._file_path)
-        except FileNotFoundError:
+            os.remove("file.json")
+        except IOError:
             pass
         try:
-            os.rename(cls._temp_file_path, cls._file_path)
-        except FileNotFoundError:
+            os.rename("tmp", "file.json")
+        except IOError:
             pass
 
     def test_one_save(self):
@@ -126,15 +123,20 @@ class TestAmenitySave(unittest.TestCase):
         am.save()
         self.assertLess(second_updated_at, am.updated_at)
 
+    def test_save_with_arg(self):
+        am = Amenity()
+        with self.assertRaises(TypeError):
+            am.save(None)
+
     def test_save_updates_file(self):
         am = Amenity()
         am.save()
         amid = "Amenity." + am.id
-        with open(self._file_path, "r") as f:
+        with open("file.json", "r") as f:
             self.assertIn(amid, f.read())
 
 
-class TestAmenityToDict(unittest.TestCase):
+class TestAmenity_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Amenity class."""
 
     def test_to_dict_type(self):
@@ -186,4 +188,3 @@ class TestAmenityToDict(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
