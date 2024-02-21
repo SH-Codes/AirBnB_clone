@@ -1,0 +1,11 @@
+header {
+	color: #ffffff (white);
+	height: 70px;
+	width: 100%;
+	border-bottom: 1px #cccccc;
+}
+
+header img {
+
+	align: left;
+}
