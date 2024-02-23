@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>4-Index.html</title>
+        <link rel="stylesheet" href="css/4-common.css">
+        <link rel="stylesheet" href="css/3-header.css">
+        <link rel="stylesheet" href="css/4-filters.css">
+        <link rel="stylesheet" href="css/3-footer.css">
+</head>
+<body>
+        <header>
+        </header>
+        <div class="container">
+                <section class="filters">
+                        <button>Search</button>
+                </section>
+        </div>
+        <footer>
+                <p>Best School</p>
+        </footer>
+</body>
+</html>
