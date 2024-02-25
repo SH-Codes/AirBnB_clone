@@ -4,6 +4,7 @@
     border: 1px solid #cccccc;
     border-radius: 4px;
     margin-left: -25px;
+    display: flex;
 }
 
 button {
@@ -15,6 +16,7 @@ button {
     border: none;
     border-radius: 4px;
     margin-top: 10px;
+    margin-left: 230px;
     margin-right: 10px;
     border-right: 30px;
     cursor: pointer;
@@ -29,12 +31,13 @@ button:hover{
     height: 100%;
     width: 25%;
     border-right: 1px solid #dddddd;
+    position: relative;
 }
 
 .amenities {
     height: 100%;
     width: 25%;
-    position:fixed;
+    position: relative;
 }
 
 h3 {
@@ -62,8 +65,6 @@ div ul.popover {
     border-radius: 4px;
     margin-top: -5px;
     display: none;
-    
-    transition-delay: 300ms;
 } 
 
 div ul.popover1 {
@@ -78,8 +79,6 @@ div ul.popover1 {
     padding-bottom: 30px;
     position: absolute;
     display: none;
-    z-index: 999;
-    overflow-y: auto;
 } 
 
 div.locations:hover ul.popover,
